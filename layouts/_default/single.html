@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <section>
+    <h1>{{ .Title }}</h1>
+
+    <!-- Renderizando o conteúdo completo dentro de uma section-box para cada seção -->
+    <div class="content">
+      {{ .Content | safeHTML }}
+    </div>
+
+  </section>
+{{ end }}

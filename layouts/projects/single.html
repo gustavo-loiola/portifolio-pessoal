@@ -1,0 +1,74 @@
+{{ define "main" }}
+<section class="{{ if eq .Params.type "iniciacao-cientifica" }}iniciacao-cientifica-page{{ end }}" style="padding: 50px; max-width: 900px; margin: 0 auto;">
+
+    {{ if eq .Params.type "iniciacao-cientifica" }}
+  <!-- Layout Específico para Iniciação Científica -->
+  <div style="background-color: #f8f8f8; padding: 20px; border-radius: 8px;">
+    <h1 style="font-size: 3rem; color: #333;">{{ .Title }}</h1>
+    <article style="font-size: 1.125rem; line-height: 1.75rem; color: #fff;">
+      {{ .Content | markdownify}}  <!-- Renderiza o conteúdo Markdown da página -->
+    </article>
+  </div>
+
+  {{ else }}
+  <!-- Layout Geral dos Outros Projetos -->
+  <!-- Problema Inicial -->
+  <div style="margin-bottom: 40px;">
+    <div style="display: flex; align-items: center;">
+      <span style="background-color: #FFC0C0; padding: 5px 10px; border-radius: 5px; color: #FF0000; font-weight: bold;"> Problema</span>
+    </div>
+    <h1 style="font-size: 2.5rem; color: #fff; margin-top: 10px;">Problema Inicial</h1>
+    <p style="font-size: 1.125rem; line-height: 1.75rem; color: #fff;">
+      {{ .Params.problem }}
+    </p>
+  </div>
+
+  <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+  <!-- Solução -->
+  <div style="margin-bottom: 40px;">
+    <div style="display: flex; align-items: center;">
+      <span style="background-color: #C4E5FF; padding: 5px 10px; border-radius: 5px; color: #24ADF3; font-weight: bold;"> Solução</span>
+    </div>
+    <h1 style="font-size: 2.5rem; color: #fff; margin-top: 10px;">Minha Solução</h1>
+    <p style="font-size: 1.125rem; line-height: 1.75rem; color: #fff;">
+      {{ .Params.solution }}
+     
+    </p>
+  </div>
+
+  <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+  <!-- Resultados Finais -->
+  <div style="margin-bottom: 40px;">
+    <div style="display: flex; align-items: center;">
+      <span style="background-color: #CCFBD2; padding: 5px 10px; border-radius: 5px; color: #00B050; font-weight: bold;"> Resultado</span>
+    </div>
+    <h1 style="font-size: 2.5rem; color: #fff; margin-top: 10px;">Resultados Finais</h1>
+    <p style="font-size: 1.125rem; line-height: 1.75rem; color: #fff;">
+      {{ .Params.result }}
+    </p>
+  </div>
+
+  <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+
+  <!-- Seção de Sugestões -->
+  <div style="margin-top: 50px;">
+    <h2 style="font-size: 2rem; color: #fff; text-align: center;">Outros Projetos</h2>
+    <div style="display: flex; justify-content: space-between; margin-top: 20px; gap: 20px;">
+
+      {{ range first 2 (shuffle (where .Site.RegularPages "Type" "projects")) }}
+      {{ if ne .Params.type "iniciacao-cientifica" }}
+        <div style="flex-basis: 48%; background-color: #f0f0f0; padding: 20px; border-radius: 8px;">
+          <h3 style="font-size: 1.5rem; color: #1F1F1F;">{{ .Title }}</h3>
+          <p style="color: #1F1F1F;">{{ .Summary }}</p>
+          <a href="{{ .Permalink }}" style="color: #0066cc; text-decoration: none; font-weight: bold;">Leia Mais</a>
+        </div>
+      {{ end }}
+    {{ end }}
+    </div>
+  </div>
+  {{ end }}
+</section>
+
+{{ end }}

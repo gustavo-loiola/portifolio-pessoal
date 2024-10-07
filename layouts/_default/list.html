@@ -1,0 +1,16 @@
+{{ define "main" }}
+<section style="padding: 50px;">
+  <h1 style="font-size: 2.5rem; color: #FFFFFF;">Meus Projetos</h1>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+
+    {{ range .Pages }}
+    <div class="project-card" style="background-color: #1F1F1F; padding: 20px; border-radius: 10px; flex-basis: 45%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+      <h2 style="font-size: 1.5rem; color: #FFFFFF;">{{ .Title }}</h2>
+      <p style="color: #FFFFFF;">{{ .Summary }}</p>
+      <a href="{{ .RelPermalink }}" style="background-color: #FFFFFF; color: #000080; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Ver mais</a>
+    </div>
+    {{ end }}
+
+  </div>
+</section>
+{{ end }}
